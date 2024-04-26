@@ -32,30 +32,34 @@ class TodoEntityAdapter(private val todos: MutableList<TodoEntity>) : RecyclerVi
         todos.removeAll{ todo ->
             todo.isChecked // Remove todos that are checked
         }
-        notifyDataSetChanged()
+        notifyDataSetChanged() // Notify the adapter that the data set has changed
     }
+    // Override onBindViewHolder method
     override fun onBindViewHolder(holder: TodoEntityViewHolder, position: Int) {
-        val curTodo = todos[position]
+        val curTodo = todos[position] // Get the current todo at the specified position
         holder.itemView.apply{
-            binding.tvTodoEntryTitle.text = curTodo.title
-            binding.cbComplete.isChecked = curTodo.isChecked
-            toggleStrikeThrough(binding.tvTodoEntryTitle, curTodo.isChecked)
+            binding.tvTodoEntryTitle.text = curTodo.title // Set the title text of the todo
+            binding.cbComplete.isChecked = curTodo.isChecked // Set the checked state of the checkbox
+            toggleStrikeThrough(binding.tvTodoEntryTitle, curTodo.isChecked) // Toggle the strike-through text based on the checked state
             binding.cbComplete.setOnCheckedChangeListener{_, isChecked ->
+                // Set a listener for the checkbox to toggle the strike-through text and update the checked state of the todo
                 toggleStrikeThrough(binding.tvTodoEntryTitle, isChecked)
                 curTodo.isChecked = !curTodo.isChecked
             }
         }
     }
 
+    // Function to toggle the strike-through text based on the checked state
     private fun toggleStrikeThrough(tvTodoEntryTitle: TextView, isChecked: Boolean){
         if(isChecked){
-            tvTodoEntryTitle.paintFlags = tvTodoEntryTitle.paintFlags or STRIKE_THRU_TEXT_FLAG
+            tvTodoEntryTitle.paintFlags = tvTodoEntryTitle.paintFlags or STRIKE_THRU_TEXT_FLAG // Add strike-through flag
         }else{
-            tvTodoEntryTitle.paintFlags = tvTodoEntryTitle.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()
+            tvTodoEntryTitle.paintFlags = tvTodoEntryTitle.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()  // Remove strike-through flag
         }
     }
+    // Override getItemCount method
     override fun getItemCount(): Int {
-        return todos.size
+        return todos.size // Return the size of the todos list
     }
 
 }

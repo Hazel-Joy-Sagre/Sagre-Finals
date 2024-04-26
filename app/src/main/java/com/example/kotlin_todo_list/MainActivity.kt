@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
         }
         // Set a click listener for the delete button
         binding.btnDeleteEntry.setOnClickListener{
-            todoEntityAdapter.deleteDoneTodos()
+            todoEntityAdapter.deleteDoneTodos() // Delete the done todos from the adapter
         }
     }
 }

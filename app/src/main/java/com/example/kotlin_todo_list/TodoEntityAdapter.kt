@@ -9,23 +9,28 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin_todo_list.databinding.EntryTodoBinding
 
+// TodoEntityAdapter class inheriting from RecyclerView.Adapter
 class TodoEntityAdapter(private val todos: MutableList<TodoEntity>) : RecyclerView.Adapter<TodoEntityAdapter.TodoEntityViewHolder>() {
 
-    private lateinit var binding: EntryTodoBinding
+    private lateinit var binding: EntryTodoBinding // Declare a lateinit variable for binding of type EntryTodoBinding
 
+    // TodoEntityViewHolder class inheriting from RecyclerView.ViewHolder
     class TodoEntityViewHolder(private val binding: EntryTodoBinding) : RecyclerView.ViewHolder(binding.root)
+    // Override onCreateViewHolder method
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoEntityViewHolder {
-        binding = EntryTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TodoEntityViewHolder(binding)
+        binding = EntryTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false) // Inflate the item layout using view binding
+        return TodoEntityViewHolder(binding) // Return a new instance of TodoEntityViewHolder with the inflated binding
     }
+    // Function to add a new todo to the list
     fun addTodo(todoEntity: TodoEntity){
-        todos.add(todoEntity)
-        notifyItemInserted(todos.size -1)
+        todos.add(todoEntity) // Add the todo to the list
+        notifyItemInserted(todos.size -1) // Notify the adapter that a new item is inserted
 
     }
+    // Function to delete all completed todos from the list
     fun deleteDoneTodos(){
         todos.removeAll{ todo ->
-            todo.isChecked
+            todo.isChecked // Remove todos that are checked
         }
         notifyDataSetChanged()
     }

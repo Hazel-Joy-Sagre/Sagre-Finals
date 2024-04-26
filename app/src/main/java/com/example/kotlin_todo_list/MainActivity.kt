@@ -38,6 +38,7 @@ class MainActivity : ComponentActivity() {
                 binding.etTodoTitle.text.clear() // Clear the todo title EditText
             }
         }
+        // Set a click listener for the delete button
         binding.btnDeleteEntry.setOnClickListener{
             todoEntityAdapter.deleteDoneTodos()
         }

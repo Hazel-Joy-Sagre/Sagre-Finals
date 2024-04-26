@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
             if(todoEntityTitle.isNotEmpty()){ // Check if the todo title is not empty
                 val todo = TodoEntity(todoEntityTitle) // Create a new TodoEntity object with the title
                 todoEntityAdapter.addTodo(todo) // Add the todo to the adapter
-                binding.etTodoTitle.text.clear() 
+                binding.etTodoTitle.text.clear() // Clear the todo title EditText
             }
         }
         binding.btnDeleteEntry.setOnClickListener{

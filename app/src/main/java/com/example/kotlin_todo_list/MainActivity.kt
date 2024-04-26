@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin_todo_list.databinding.ActivityMainBinding
 import com.example.kotlin_todo_list.ui.theme.Kotlin_ToDo_ListTheme
 
+// MainActivity class inheriting from ComponentActivity
 class MainActivity : ComponentActivity() {
 
     private lateinit var todoEntityAdapter: TodoEntityAdapter

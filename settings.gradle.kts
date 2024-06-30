@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Kotlin_ToDo_List"
 include(":app")
+
